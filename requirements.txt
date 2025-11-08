@@ -1,0 +1,9 @@
+simple-salesforce>=1.12.9
+python-dotenv
+pandas
+requests
+slack-sdk
+fastmcp
+google-api-python-client
+google-auth
+
