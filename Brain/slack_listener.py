@@ -1,7 +1,7 @@
 from slack_bolt import App
 import os, logging, re, dotenv
 from slack_bolt.adapter.socket_mode import SocketModeHandler
-from openai_functions import create_openai_response
+from openai_functions import create_openai_response, get_or_create_conv_id
 
 dotenv.load_dotenv()
 
@@ -40,7 +40,9 @@ def create_slack_app():
         user = event.get("user")
         ts = event.get("ts")  # timestamp of this message
         thread_ts = event.get("thread_ts") or ts  # root thread id
-        conv_id = thread_ts.replace(".", "-")
+        
+        # Map Slack thread → OpenAI conv_ id
+        conv_id = get_or_create_conv_id(channel, thread_ts)
 
         # Clean the text (remove the @mention token)
         raw_text = event.get("text", "")
@@ -55,7 +57,7 @@ def create_slack_app():
         try:
             # Use Slack thread_ts as the conversation id to persist context
             # across replies in the same Slack thread.
-            reply_text = create_openai_response(user_text, conv_id)
+            reply_text = create_openai_response(channel,thread_ts, user_text, conv_id)
 
         except Exception as e:
             logger.exception("OpenAI call failed")

@@ -117,7 +117,8 @@ def send_slack_message(channel_id: str, text: str, bot_id: str = None, thread_ts
         }
 
 if __name__ == "__main__":
-
-    message = "tyron@telnyx.com MQLd"
-    result = send_slack_message(channel_id="C01LVJCHA5T", text=message, bot_id="REMOVED_TOKEN")
-    print(result)
+    # Example usage
+    # message = "Hello from the bot!"
+    # result = send_slack_message(channel_id="C02MVAN0KDM", text=message, bot_id=None)
+    # print(result)
+    pass
