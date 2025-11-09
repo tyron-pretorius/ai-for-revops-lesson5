@@ -3,7 +3,9 @@ python-dotenv
 pandas
 requests
 slack-sdk
+slack-bolt
 fastmcp
 google-api-python-client
 google-auth
+openai
 
