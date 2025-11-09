@@ -130,12 +130,6 @@ def update_salesforce_contact(contact_id: str, contact_fields: dict) -> dict:
     return result
 
 @mcp.tool()
-def create_salesforce_lead(fields: dict) -> dict:
-    """Create a new Lead in Salesforce."""
-    result = salesforce_functions.create_lead(fields)
-    return result
-
-@mcp.tool()
 def lookup_salesforce_user_by_email(user_email: str) -> dict:
     """Lookup a User by email address and return user information."""
     result = salesforce_functions.lookup_user_email(user_email)
