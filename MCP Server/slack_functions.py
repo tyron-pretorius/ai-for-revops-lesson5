@@ -115,10 +115,3 @@ def send_slack_message(channel_id: str, text: str, bot_id: str = None, thread_ts
             'success': False,
             'error': f"Unexpected error: {str(e)}"
         }
-
-if __name__ == "__main__":
-    # Example usage
-    # message = "Hello from the bot!"
-    # result = send_slack_message(channel_id="C02MVAN0KDM", text=message, bot_id=None)
-    # print(result)
-    pass
