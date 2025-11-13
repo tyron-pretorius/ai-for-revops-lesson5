@@ -144,7 +144,13 @@ def getActivitiesforLead(leadId, days_in_past = 7):
         more = data['moreResult']
     
     # Return activities as list of dictionaries (native JSON format)
-    return activities
+    return {
+        'success': True,
+        'lead_id': leadId,
+        'days_in_past': days_in_past,
+        'activity_count': len(activities),
+        'activities': activities
+    }
 
 
 # Example usage
@@ -152,7 +158,7 @@ if __name__ == '__main__':
     
     # Get activities for a specific lead
     leadId = "7315607"
-    days_back = 60
+    days_back = 90
     activities = getActivitiesforLead(leadId, days_in_past=days_back)
     
     # Print as formatted JSON

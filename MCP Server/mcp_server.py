@@ -102,7 +102,7 @@ def lookup_marketo_lead(filter_type: str, filter_values: str, fields: str = None
     return result
 
 @mcp.tool()
-def get_marketo_activities_for_lead(lead_id: str, days_in_past: int = 7) -> list:
+def get_marketo_activities_for_lead(lead_id: str, days_in_past: int = 7) -> dict:
     """Get activities for a specific Marketo lead ID within a time range."""
     activities = marketo_functions.getActivitiesforLead(lead_id, days_in_past)
     return activities
@@ -133,6 +133,12 @@ def update_salesforce_contact(contact_id: str, contact_fields: dict) -> dict:
 def lookup_salesforce_user_by_email(user_email: str) -> dict:
     """Lookup a User by email address and return user information."""
     result = salesforce_functions.lookup_user_email(user_email)
+    return result
+
+@mcp.tool()
+def create_salesforce_lead(fields: dict) -> dict:
+    """Create a new Lead in Salesforce."""
+    result = salesforce_functions.create_lead(fields)
     return result
 
 # ============================================================================

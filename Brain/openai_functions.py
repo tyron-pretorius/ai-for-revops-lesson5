@@ -7,9 +7,9 @@ load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-MCP_URL = "https://73f9e571a915.ngrok-free.app/api/mcp"
+MCP_URL = "https://2e987b531a8a.ngrok-free.app/api/mcp"
 MCP_KEY = os.getenv("MCP_API_KEY")   # same key your server expects
-MCP_LABEL = "mql_functions"          # label you referenced in your prompt
+MCP_LABEL = "mql_mcp"          # label you referenced in your prompt
 
 _thread_to_conv: Dict[Tuple[str, str], str] = {}
 
@@ -22,7 +22,7 @@ def get_or_create_conv_id(channel: str, thread_ts: str) -> str:
     return conv.id
 
 MODEL = "gpt-5"
-PROMPT_ID = "pmpt_690e9aa54260819699501b92b4d0b1020705ee4b0cb2a09c"
+PROMPT_ID = "pmpt_6913fb3c00888190966cb2b14fc7864c02171c00ec70557c"
 
 def create_openai_response(channel: str, thread_ts: str, input: str, conversation_id: str) -> tuple[str, str]:
 

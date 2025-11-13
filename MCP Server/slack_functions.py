@@ -63,55 +63,6 @@ def get_thread_messages(channel_id: str, thread_ts: str):
         'messages': formatted_messages
     }
 
-def send_slack_message(channel_id: str, text: str, bot_id: str = None, thread_ts: str = None):
-    """
-    Send a message to Slack on behalf of a bot user.
-    
-    Args:
-        channel_id: The Slack channel ID or user ID (for DMs) to send the message to
-        text: The message text to send
-        bot_id: Optional bot user ID (currently uses the configured bot token)
-        thread_ts: Optional thread timestamp to reply to a thread
-    
-    Returns:
-        Dictionary with success status and message information
-    """
-
-    client = WebClient(token=bot_id)
-
-    try:
-        # Prepare the message payload
-        message_payload = {
-            'channel': channel_id,
-            'text': text
-        }
-        
-        # If replying to a thread, include the thread_ts
-        if thread_ts:
-            message_payload['thread_ts'] = thread_ts
-        
-        # Send the message using the bot token
-        response = client.chat_postMessage(**message_payload)
-        
-        return {
-            'success': True,
-            'message': {
-                'ts': response.get('ts'),
-                'channel': response.get('channel'),
-                'text': response.get('message', {}).get('text'),
-                'bot_id': response.get('message', {}).get('bot_id'),
-                'user': response.get('message', {}).get('user')
-            }
-        }
-        
-    except SlackApiError as e:
-        return {
-            'success': False,
-            'error': f"Slack API error: {e.response['error']}",
-            'error_code': e.response.get('error')
-        }
-    except Exception as e:
-        return {
-            'success': False,
-            'error': f"Unexpected error: {str(e)}"
-        }
+if __name__ == "__main__":
+    result = get_slack_user_profile("U01MB9ZKQQ1")
+    print(result)
